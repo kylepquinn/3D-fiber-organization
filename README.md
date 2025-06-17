@@ -35,10 +35,8 @@ To get started using these functions, download this repository and extract the .
 
 ---
 
-## Examples and Documentation
+## Example
 
-Within this repository, there are documentation markdown (.md) files that contain a MATLAB-like information about each function, which can be found in this root folder. The 'documentation' folder contains figures for the markdown files.
-
-Additionally, there is a tutorial script within the 'examples' folder that provides an example on how to properly utilize the functions within this repository.
+There is a tutorial script within the 'examples' folder that provides an example on how to properly utilize the functions within this repository.
 
 ---
