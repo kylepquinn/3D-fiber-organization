@@ -12,7 +12,7 @@
 clear, clc, close all
 
 %--- Step 1: Load the SHG image ---%
-shgImage = multipageread('.\files\fiber_analysis_3D\shg_855.tif');
+shgImage = multipageread('.\files\shg_855.tif');
 
 % Currently, this image is a 16-bit intensity image with a true bit-depth 
 % of 13. For most of the analysis in this tutorial, the input image typing 
@@ -69,8 +69,8 @@ end
 
 % Finally, the intensity can be modulated for each pixel based on the input
 % image. This also benefits from the image having a normalized intensity
-% range between 0 and 1. Please note that is output is **qualitative**. FOr
-% future steps, we will directly use the output from `calcfibang2D`.
+% range between 0 and 1. Please note that is output is **qualitative**. For
+% future steps, we will directly use the output from `calcfibang3D`.
 
 
 % The inclination can be processed in a similar fashion, but the
@@ -203,62 +203,62 @@ data = struct('OverallMeanOrientation', overallMeanOrientation * (180/pi),...
 for i = 1:size(shgImage,3)
     if i == 1
         % Orientation
-        doublewrite(orientationImage(:,:,i), '.\files\fiber_analysis_3D\output\orientation.tiff');
-        imwrite(orientationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\orientation_color.tiff');
+        doublewrite(orientationImage(:,:,i), '.\files\output\orientation.tiff');
+        imwrite(orientationColor(:,:,:,i), '.\files\output\orientation_color.tiff');
 
         % Inclination
-        doublewrite(inclinationImage(:,:,i), '.\files\fiber_analysis_3D\output\inclination.tiff');
-        imwrite(inclinationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\inclination_color.tiff');
+        doublewrite(inclinationImage(:,:,i), '.\files\output\inclination.tiff');
+        imwrite(inclinationColor(:,:,:,i), '.\files\output\inclination_color.tiff');
 
         % Collagen mask - one of the only exceptions for having one output image.
         % To make an ImageJ-friendly image, the mask should be converted from
         % logical to uint8.
-        imwrite(uint8(collagenMask(:,:,i).*255), '.\files\fiber_analysis_3D\output\collagenMask.tiff');
+        imwrite(uint8(collagenMask(:,:,i).*255), '.\files\output\collagenMask.tiff');
         
         % Local orientation
-        doublewrite(localOrientation(:,:,i), '.\files\fiber_analysis_3D\output\localOrientation.tiff');
-        imwrite(localOrientationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localOrientation_color.tiff');
+        doublewrite(localOrientation(:,:,i), '.\files\output\localOrientation.tiff');
+        imwrite(localOrientationColor(:,:,:,i), '.\files\output\localOrientation_color.tiff');
 
         % Local inclination
-        doublewrite(localInclination(:,:,i), '.\files\fiber_analysis_3D\output\localInclination.tiff');
-        imwrite(localInclinationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localInclination_color.tiff');
+        doublewrite(localInclination(:,:,i), '.\files\output\localInclination.tiff');
+        imwrite(localInclinationColor(:,:,:,i), '.\files\output\localInclination_color.tiff');
 
         % Local directional variance
-        doublewrite(localDV(:,:,i), '.\files\fiber_analysis_3D\output\localDV.tiff');
-        imwrite(localDVColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localDV_color.tiff');
+        doublewrite(localDV(:,:,i), '.\files\output\localDV.tiff');
+        imwrite(localDVColor(:,:,:,i), '.\files\output\localDV_color.tiff');
         
         % Local fiber volume fraction
-        doublewrite(localFVF(:,:,i), '.\files\fiber_analysis_3D\output\localFVF.tiff');
-        imwrite(localFVFColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localFVF_color.tiff');
+        doublewrite(localFVF(:,:,i), '.\files\output\localFVF.tiff');
+        imwrite(localFVFColor(:,:,:,i), '.\files\output\localFVF_color.tiff');
 
     else
         % Orientation
-        doublewrite(orientationImage(:,:,i), '.\files\fiber_analysis_3D\output\orientation.tiff','writemode','append');
-        imwrite(orientationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\orientation_color.tiff','writemode','append');
+        doublewrite(orientationImage(:,:,i), '.\files\output\orientation.tiff','writemode','append');
+        imwrite(orientationColor(:,:,:,i), '.\files\output\orientation_color.tiff','writemode','append');
         
         % Inclination
-        doublewrite(inclinationImage(:,:,i), '.\files\fiber_analysis_3D\output\inclination.tiff','writemode','append');
-        imwrite(inclinationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\inclination_color.tiff','writemode','append');
+        doublewrite(inclinationImage(:,:,i), '.\files\output\inclination.tiff','writemode','append');
+        imwrite(inclinationColor(:,:,:,i), '.\files\output\inclination_color.tiff','writemode','append');
 
         % Collagen mask - one of the only exceptions for having one output image.
         % To make an ImageJ-friendly image, the mask should be converted from
         % logical to uint8.
-        imwrite(uint8(collagenMask(:,:,i).*255), '.\files\fiber_analysis_3D\output\collagenMask.tiff','writemode','append');
+        imwrite(uint8(collagenMask(:,:,i).*255), '.\files\output\collagenMask.tiff','writemode','append');
         
         % Local orientation
-        doublewrite(localOrientation(:,:,i), '.\files\fiber_analysis_3D\output\localOrientation.tiff','writemode','append');
-        imwrite(localOrientationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localOrientation_color.tiff','writemode','append');
+        doublewrite(localOrientation(:,:,i), '.\files\output\localOrientation.tiff','writemode','append');
+        imwrite(localOrientationColor(:,:,:,i), '.\files\output\localOrientation_color.tiff','writemode','append');
 
         % Local inclination
-        doublewrite(localInclination(:,:,i), '.\files\fiber_analysis_3D\output\localInclination.tiff','writemode','append');
-        imwrite(localInclinationColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localInclination_color.tiff','writemode','append');
+        doublewrite(localInclination(:,:,i), '.\files\output\localInclination.tiff','writemode','append');
+        imwrite(localInclinationColor(:,:,:,i), '.\files\output\localInclination_color.tiff','writemode','append');
 
         % Local directional variance
-        doublewrite(localDV(:,:,i), '.\files\fiber_analysis_3D\output\localDV.tiff','writemode','append');
-        imwrite(localDVColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localDV_color.tiff','writemode','append');
+        doublewrite(localDV(:,:,i), '.\files\output\localDV.tiff','writemode','append');
+        imwrite(localDVColor(:,:,:,i), '.\files\output\localDV_color.tiff','writemode','append');
         
         % Local fiber volume fraction
-        doublewrite(localFVF(:,:,i), '.\files\fiber_analysis_3D\output\localFVF.tiff','writemode','append');
-        imwrite(localFVFColor(:,:,:,i), '.\files\fiber_analysis_3D\output\localFVF_color.tiff','writemode','append');
+        doublewrite(localFVF(:,:,i), '.\files\output\localFVF.tiff','writemode','append');
+        imwrite(localFVFColor(:,:,:,i), '.\files\output\localFVF_color.tiff','writemode','append');
     end
 end
